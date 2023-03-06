@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3451939946014603121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8984457961213007590}
+  - component: {fileID: -5185670854941193979}
+  m_Layer: 0
+  m_Name: Bow
+  m_TagString: Bow
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8984457961213007590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451939946014603121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5185670854941193979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3451939946014603121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fa466651950cc40bf8ccf096b80d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTier: 3
+  tierOneArrow: {fileID: 7259631418399345353, guid: 00c87854849514e4e8db0118746053fb, type: 3}
+  tierTwoArrow: {fileID: 6178499569514771103, guid: a55172b40a69eab49b5774be6cfa6b0b, type: 3}
+  tierThreeArrow: {fileID: 2969802198200832043, guid: c3c740a7de9af5b4b977f43ee64e5afa, type: 3}
+  tierFourArrow: {fileID: 1304860526014489389, guid: 25646a64792e9b24cbd272459a9f6cba, type: 3}
