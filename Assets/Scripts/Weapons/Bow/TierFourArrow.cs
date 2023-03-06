@@ -26,25 +26,26 @@ public class TierFourArrow : MonoBehaviour
         {
             other.GetComponentInParent<Zombie>().Health -= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Damage;
             Debug.Log(other.GetComponentInParent<Zombie>().Health);
-            ExplodeOnHit();
+            Vector3 bounds = other.bounds.max;
+            ExplodeOnHit(bounds);
         }
     }
 
-    private void ExplodeOnHit()
+    private void ExplodeOnHit(Vector3 bounds)
     {
         Vector2 velocity = rb.velocity;
         velocity.x = 0;
         velocity.y = 1;
-        Instantiate(childArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         velocity.x = 1;
         velocity.y = 0;
-        Instantiate(childArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         velocity.x = -1;
         velocity.y = 0;
-        Instantiate(childArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         velocity.x = 0;
         velocity.y = -1;
-        Instantiate(childArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         Destroy(this.gameObject);
     }
 }
