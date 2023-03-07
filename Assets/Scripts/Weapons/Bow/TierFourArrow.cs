@@ -26,26 +26,27 @@ public class TierFourArrow : MonoBehaviour
         {
             other.GetComponentInParent<Zombie>().Health -= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Damage;
             Debug.Log(other.GetComponentInParent<Zombie>().Health);
-            Vector3 bounds = other.bounds.max;
-            ExplodeOnHit(bounds);
+            ExplodeOnHit(other);
         }
     }
 
-    private void ExplodeOnHit(Vector3 bounds)
+    private void ExplodeOnHit(Collider2D collider)
     {
+        Vector3 colliderCenter = collider.bounds.center;
+        Vector3 colliderSize = collider.bounds.size;
         Vector2 velocity = rb.velocity;
         velocity.x = 0;
         velocity.y = 1;
-        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, new Vector3(colliderCenter.x, (colliderCenter.y + (colliderSize.y / 2) + 0.5f)), transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         velocity.x = 1;
         velocity.y = 0;
-        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, new Vector3((colliderCenter.x + (colliderSize.x / 2) + 0.5f), colliderCenter.y), transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         velocity.x = -1;
         velocity.y = 0;
-        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, new Vector3((colliderCenter.x - (colliderSize.x / 2) - 0.5f), colliderCenter.y), transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         velocity.x = 0;
         velocity.y = -1;
-        Instantiate(childArrow, bounds, transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
+        Instantiate(childArrow, new Vector3(colliderCenter.x, (colliderCenter.y - (colliderSize.y / 2) - 0.5f)), transform.rotation).GetComponent<Rigidbody2D>().velocity = velocity.normalized * 30;
         Destroy(this.gameObject);
     }
 }
