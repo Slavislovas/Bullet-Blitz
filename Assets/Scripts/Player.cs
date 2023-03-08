@@ -9,7 +9,8 @@ public class Player : BaseCharacter
     float vertical;
     [SerializeField]
     GameObject weapon;
-
+    [SerializeField]
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +25,19 @@ public class Player : BaseCharacter
     void Update()
     {
         CalculateMovementDirection();
+        SetAnimatorParameters();
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * MovementSpeed, vertical * MovementSpeed);
+    }
+
+    private void SetAnimatorParameters()
+    {
+        animator.SetFloat("Horizontal", rb.velocity.x);
+        animator.SetFloat("Vertical", rb.velocity.y);
+        animator.SetFloat("Magnitude", rb.velocity.magnitude);
     }
 
     private void CalculateMovementDirection()

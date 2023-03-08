@@ -30,8 +30,16 @@ public class MapGenerator : MonoBehaviour
             {
                 //float noiseValue = Mathf.PerlinNoise((float)x / scale, (float)y / scale);
                 float noiseValue = Mathf.PerlinNoise((float)x / scale + xOffset, (float)y / scale + yOffset);
-                Tile tile = noiseValue > wallThreshold ? wallTile : grassTile;
-                tilemap.SetTile(new Vector3Int(x, y, 0), tile);
+                if (noiseValue > wallThreshold)
+                {
+                    collidableTilemap.SetTile(new Vector3Int(x, y, 0), wallTile);
+                }
+                else
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), grassTile);
+                }
+                //Tile tile = noiseValue > wallThreshold ? wallTile : grassTile;
+                //tilemap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }
     }
@@ -47,6 +55,7 @@ public class MapGenerator : MonoBehaviour
             for (int y = spawnAreaOrigin.y; y < spawnAreaOrigin.y + spawnAreaHeight; y++)
             {
                 Vector3Int tilePos = new Vector3Int(x, y, 0);
+                collidableTilemap.SetTile(tilePos, null);
                 tilemap.SetTile(tilePos, grassTile);
             }
         }

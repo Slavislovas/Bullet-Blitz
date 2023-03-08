@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fa466651950cc40bf8ccf096b80d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponTier: 3
+  weaponTier: 1
   tierOneArrow: {fileID: 7259631418399345353, guid: 00c87854849514e4e8db0118746053fb, type: 3}
   tierTwoArrow: {fileID: 6178499569514771103, guid: a55172b40a69eab49b5774be6cfa6b0b, type: 3}
   tierThreeArrow: {fileID: 2969802198200832043, guid: c3c740a7de9af5b4b977f43ee64e5afa, type: 3}
   tierFourArrow: {fileID: 1304860526014489389, guid: 25646a64792e9b24cbd272459a9f6cba, type: 3}
+  arrowSpeed: 30

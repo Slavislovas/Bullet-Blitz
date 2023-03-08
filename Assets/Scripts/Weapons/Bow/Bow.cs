@@ -14,6 +14,7 @@ public class Bow : MonoBehaviour
     public GameObject tierTwoArrow;
     public GameObject tierThreeArrow;
     public GameObject tierFourArrow;
+    public int arrowSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -43,11 +44,11 @@ public class Bow : MonoBehaviour
             switch (weaponTier)
             {
                 case WeaponTierEnum.ONE:
-                    Instantiate(tierOneArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(shootInputHorizontal, shootInputVertical).normalized * 30;
+                    Instantiate(tierOneArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(shootInputHorizontal, shootInputVertical).normalized * arrowSpeed;
                     break;
                 case WeaponTierEnum.TWO:
-                    Instantiate(tierOneArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(shootInputHorizontal, shootInputVertical).normalized * 30;
-                    Instantiate(tierOneArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(shootInputHorizontal, shootInputVertical).normalized * 30;
+                    Instantiate(tierTwoArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(shootInputHorizontal, shootInputVertical).normalized * arrowSpeed;
+                    Instantiate(tierTwoArrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(shootInputHorizontal, shootInputVertical).normalized * arrowSpeed;
                     break;
                 case WeaponTierEnum.THREE:
                     TierThreeBowFuncionality(tierThreeArrow);
@@ -64,51 +65,51 @@ public class Bow : MonoBehaviour
     {
         if (shootInputHorizontal == 1 && shootInputVertical == 1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0).normalized * arrowSpeed;
         }
         else if (shootInputHorizontal == -1 && shootInputVertical == 1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 0).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 0).normalized * arrowSpeed;
         }
         else if (shootInputHorizontal == -1 && shootInputVertical == -1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 0).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 0).normalized * arrowSpeed;
         }
         else if (shootInputHorizontal == 1 && shootInputVertical == -1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0).normalized * arrowSpeed;
         }
         else if (shootInputHorizontal == 1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1).normalized * arrowSpeed;
         }
         else if (shootInputHorizontal == -1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 0).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -1).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 0).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -1).normalized * arrowSpeed;
         }
         else if (shootInputVertical == 1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 1).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, 1).normalized * arrowSpeed;
         }
         else if (shootInputVertical == -1)
         {
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1).normalized * 30;
-            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1).normalized * 30;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(-1, -1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1).normalized * arrowSpeed;
+            Instantiate(arrow, transform.position, transform.rotation).GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1).normalized * arrowSpeed;
         }
     }
 
