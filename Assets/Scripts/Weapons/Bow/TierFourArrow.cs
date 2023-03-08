@@ -21,9 +21,9 @@ public class TierFourArrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("HIT");
         if (other.gameObject.tag.Equals("Enemy"))
         {
+            Debug.Log("HIT");
             other.GetComponentInParent<Zombie>().Health -= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Damage;
             Debug.Log(other.GetComponentInParent<Zombie>().Health);
             ExplodeOnHit(other);
