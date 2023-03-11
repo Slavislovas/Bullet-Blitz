@@ -44,6 +44,11 @@ public class ChildTierFourArrow : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 180);
         }
 
+        if (rb.velocity.x > 0 && rb.velocity.y == 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 360);
+        }
+
         if (rb.velocity.x == 0 && rb.velocity.y < 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 270);

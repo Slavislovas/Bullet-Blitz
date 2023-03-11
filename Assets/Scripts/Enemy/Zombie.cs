@@ -29,7 +29,7 @@ public class Zombie : BaseCharacter
     {
         if (this.Health <= 0)
         {
-            Destroy(gameObject);
+           Destroy(gameObject);
         }
     }
 

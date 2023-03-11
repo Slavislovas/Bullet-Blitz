@@ -543,6 +543,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1036519009}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 4445758424229809036, guid: 9ca46609e017a6049b7b14699d80fa41, type: 3}
+    - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: collidableTilemap
       value: 
       objectReference: {fileID: 1835608469}

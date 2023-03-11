@@ -29,7 +29,7 @@ public class TierFourArrow : MonoBehaviour
             ExplodeOnHit(other);        
         }
 
-        //Destroy when hitting collidable terrain, environment objects etc.
+        //Destroy when hitting collidable terrain, environment objects etc.sdd
         if (!other.gameObject.tag.Equals("Player") && !other.gameObject.tag.Equals("PlayerProjectile"))
         {
             Destroy(this.gameObject);
