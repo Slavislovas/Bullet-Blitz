@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using NavMeshPlus.Components;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class MapGenerator : MonoBehaviour
     public Tile wallTile;
     public float wallThreshold = 0.5f;
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    public GameObject navMesh;
+    NavMeshSurface navMeshSurface;
 
     void Start()
     {
+        navMeshSurface = navMesh.GetComponent<NavMeshSurface>();
         GenerateMap();
         SpawnPlayer();
+        navMeshSurface.BuildNavMesh();
     }
 
     void GenerateMap()
@@ -66,6 +70,5 @@ public class MapGenerator : MonoBehaviour
 
         // Instantiate the player prefab at the center of the grassy area
         GameObject player = Instantiate(playerPrefab, center, Quaternion.identity);
-        GameObject test = Instantiate(enemyPrefab, center, Quaternion.identity);
     }
 }
