@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
       propertyPath: spawnInterval
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
       propertyPath: collidableTilemap
