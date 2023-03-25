@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
       propertyPath: spawnInterval
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
       propertyPath: collidableTilemap
@@ -353,6 +353,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5459984935061892454, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459984935061892454, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 5459984935061892475, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -397,7 +405,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6203650637471093235, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
+      propertyPath: smoothTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203650637471093235, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
+      propertyPath: cameraComponent
+      value: 
+      objectReference: {fileID: 1917828167}
+    m_RemovedComponents:
+    - {fileID: 3297099507208609438, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
 --- !u!1 &1707388311 stripped
 GameObject:
@@ -604,6 +621,16 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &1917828165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5459984935061892454, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
+  m_PrefabInstance: {fileID: 1326036501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1917828167 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5459984935061892452, guid: 5ee76f21059ba3f4bb1c01c17b759e14, type: 3}
+  m_PrefabInstance: {fileID: 1326036501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4723762555210902399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -656,6 +683,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1917828165}
+    - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: navMesh
       value: 
       objectReference: {fileID: 297915700}
@@ -663,6 +694,14 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 1036519009}
+    - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
+      propertyPath: mapWidth
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
+      propertyPath: mapHeight
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: enemyPrefab
       value: 
@@ -677,6 +716,10 @@ PrefabInstance:
       objectReference: {fileID: 1835608469}
     - target: {fileID: 4723762556203052599, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: m_Name
+      value: MapGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723762556203052599, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
+      propertyPath: m_TagString
       value: MapGenerator
       objectReference: {fileID: 0}
     m_RemovedComponents: []

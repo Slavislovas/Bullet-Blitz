@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlayerProjectile
   - CollidableTilemap
+  - MapGenerator
   layers:
   - Default
   - TransparentFX

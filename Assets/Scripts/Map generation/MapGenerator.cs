@@ -14,14 +14,17 @@ public class MapGenerator : MonoBehaviour
     public float wallThreshold = 0.5f;
     public GameObject playerPrefab;
     public GameObject navMesh;
+    public GameObject camera;
     NavMeshSurface navMeshSurface;
 
     void Start()
     {
         navMeshSurface = navMesh.GetComponent<NavMeshSurface>();
         GenerateMap();
+        GenerateMapEdges();
         SpawnPlayer();
         navMeshSurface.BuildNavMesh();
+        camera.SetActive(true);
     }
 
     void GenerateMap()
@@ -43,11 +46,25 @@ public class MapGenerator : MonoBehaviour
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), grassTile);
                 }
-                //Tile tile = noiseValue > wallThreshold ? wallTile : grassTile;
-                //tilemap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }
     }
+
+    private void GenerateMapEdges()
+    {
+        for(int x = 0; x < mapWidth; x++)
+        {
+            collidableTilemap.SetTile(new Vector3Int(x, mapHeight, 0), wallTile);
+            collidableTilemap.SetTile(new Vector3Int(x, -1, 0), wallTile);
+        }
+
+        for (int y = 0; y < mapHeight; y++)
+        {
+            collidableTilemap.SetTile(new Vector3Int(mapWidth, y, 0), wallTile);
+            collidableTilemap.SetTile(new Vector3Int(-1, y, 0), wallTile);
+        }
+    }
+
 
     void SpawnPlayer()
     {

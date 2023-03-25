@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : BaseCharacter
 {
@@ -17,8 +18,6 @@ public class Player : BaseCharacter
         rb = GetComponent<Rigidbody2D>();
         var instantiatedWeapon = Instantiate(weapon);
         instantiatedWeapon.transform.SetParent(rb.transform, false);
-        var camera = GameObject.FindWithTag("MainCamera");
-        camera.transform.SetParent(rb.transform, false);
     }
 
     // Update is called once per frame
