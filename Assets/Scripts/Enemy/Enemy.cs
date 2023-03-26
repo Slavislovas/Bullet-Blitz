@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Zombie : BaseCharacter
+public class Enemy : BaseCharacter
 {
     Transform target;
     NavMeshAgent agent;

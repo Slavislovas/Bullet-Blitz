@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  Damage: 0
+  Damage: 5
   AttackInterval: 0
   MovementSpeed: 5
   HealthRegen: 0

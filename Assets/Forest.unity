@@ -696,11 +696,11 @@ PrefabInstance:
       objectReference: {fileID: 1036519009}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: mapWidth
-      value: 128
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: mapHeight
-      value: 128
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: enemyPrefab

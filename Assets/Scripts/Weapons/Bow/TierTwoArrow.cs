@@ -21,8 +21,8 @@ public class TierTwoArrow : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            other.GetComponentInParent<Zombie>().Health -= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Damage;
-            Debug.Log(other.GetComponentInParent<Zombie>().Health);
+            other.GetComponentInParent<Enemy>().Health -= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Damage;
+            Debug.Log(other.GetComponentInParent<Enemy>().Health);
         }
 
         if (!other.gameObject.tag.Equals("Player") && !other.gameObject.tag.Equals("PlayerProjectile"))
