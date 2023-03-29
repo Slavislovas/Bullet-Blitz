@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e14ed44733f5d4d8dd3bf2ec76b0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 20
   Damage: 50
-  AttackInterval: 2
+  AttackInterval: 1
   MovementSpeed: 5
   HealthRegen: 0
   LifeSteal: 0

@@ -9,12 +9,8 @@ TagManager:
   - PlayerProjectile
   - CollidableTilemap
   - MapGenerator
-  - MainMenu
-  - SettingsMenu
-  - NewGameButton
-  - SettingsButton
-  - QuitButton
-  - BackButton
+  - GameOverMenu
+  - GameOverMenuNewGameButton
   layers:
   - Default
   - TransparentFX

@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 242254988}
   m_Layer: 5
   m_Name: SettingsMenu
-  m_TagString: SettingsMenu
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 465197417}
   m_Layer: 5
   m_Name: QuitButton
-  m_TagString: QuitButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 685204997}
   m_Layer: 5
   m_Name: NewGameButton
-  m_TagString: NewGameButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1605,7 +1605,7 @@ GameObject:
   - component: {fileID: 1804317043}
   m_Layer: 5
   m_Name: MainMenu
-  m_TagString: MainMenu
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1795,7 +1795,7 @@ GameObject:
   - component: {fileID: 2141949412}
   m_Layer: 5
   m_Name: SettingsButton
-  m_TagString: SettingsButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
