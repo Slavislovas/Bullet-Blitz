@@ -997,7 +997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverMenuUI: {fileID: 824706527}
   NewGameButton: {fileID: 1807288778}
-  Player: {fileID: 7739291607899254506, guid: 162a3b4205a65144c9b7e9c4f55dc18e, type: 3}
 --- !u!1 &824706527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1269,14 @@ PrefabInstance:
     - target: {fileID: 3799711244429949202, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
+      propertyPath: mapWidth
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
+      propertyPath: mapHeight
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 7538990144432761337, guid: dea8576fdeed85440950c1c7a7626f52, type: 3}
       propertyPath: spawnInterval
@@ -3041,11 +3048,11 @@ PrefabInstance:
       objectReference: {fileID: 1036519009}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: mapWidth
-      value: 1024
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: mapHeight
-      value: 1024
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 4723762556203052598, guid: 60a05da41eccafe44b57e0f6dbd98c42, type: 3}
       propertyPath: enemyPrefab

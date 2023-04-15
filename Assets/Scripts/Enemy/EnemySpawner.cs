@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 5f;
     public float spawnDistanceFromCamera = 10f;
     public Tilemap collidableTilemap;
+    public int mapHeight;
+    public int mapWidth;
 
     private float timeSinceLastSpawn = 0f;
 
@@ -30,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         // Adjust the spawn position to be outside the camera view
         while (IsInsideCameraView(spawnPos))
         {
-            spawnPos += (spawnPos - Camera.main.transform.position).normalized * spawnDistanceFromCamera;
+             spawnPos += (spawnPos - Camera.main.transform.position).normalized * spawnDistanceFromCamera;
         }
 
         // Check if spawn position is on a collidable tile
@@ -44,8 +46,16 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // Spawn the enemy prefab at the adjusted spawn position
-        spawnPos.z = 0;
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        if (IsInsideMapBounds(spawnPos))
+        {
+            spawnPos.z = 0;
+            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+
+    private bool IsInsideMapBounds(Vector3 spawnPos)
+    {
+        return spawnPos.x > 0 && spawnPos.x < mapWidth && spawnPos.y > 0 && spawnPos.y < mapHeight;
     }
 
     private bool IsInsideCameraView(Vector3 position)
