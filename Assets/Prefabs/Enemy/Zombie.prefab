@@ -103,6 +103,7 @@ MonoBehaviour:
   HealthRegen: 0
   LifeSteal: 0
   animator: {fileID: -783560353478636640}
+  xpReward: 10
 --- !u!212 &-3105324225874933271
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ TagManager:
   - MapGenerator
   - GameOverMenu
   - GameOverMenuNewGameButton
+  - BackButton
+  - Item
   layers:
   - Default
   - TransparentFX

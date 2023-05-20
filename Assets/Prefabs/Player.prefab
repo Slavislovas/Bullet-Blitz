@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e14ed44733f5d4d8dd3bf2ec76b0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 20
   Health: 20
   Damage: 50
   AttackInterval: 1
@@ -129,6 +130,7 @@ MonoBehaviour:
   LifeSteal: 0
   weapon: {fileID: 3451939946014603121, guid: 5d305b35354796b4c9ee6b5c6e090384, type: 3}
   animator: {fileID: -3881381920783435323}
+  experience: 0
 --- !u!61 &9181303899105475587
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -25,7 +25,6 @@ public class TierFourArrow : MonoBehaviour
         if (other.gameObject.tag.Equals("Enemy"))
         {
             other.GetComponentInParent<Enemy>().Health -= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Damage;
-            Debug.Log(other.GetComponentInParent<Enemy>().Health);
             ExplodeOnHit(other);        
         }
 

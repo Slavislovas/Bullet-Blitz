@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class Player : BaseCharacter
     [SerializeField]
     Animator animator;
     bool invicible;
+    public int experience = 0;
+    int level = 1;
+    int requiredXpForLevelUp = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +43,6 @@ public class Player : BaseCharacter
         {
             int damage = collision.gameObject.GetComponent<Enemy>().Damage;
             this.Health -= damage;
-            Debug.Log("PlayerHealth: " + this.Health);
             StartCoroutine(InvFrames());
         }
     }
@@ -50,6 +53,82 @@ public class Player : BaseCharacter
         yield return new WaitForSeconds(1);
         invicible = false;
 
+    }
+
+    internal void AddExperience(int xpReward)
+    {
+        this.experience += xpReward;
+        if (experience >= requiredXpForLevelUp)
+        {
+            experience = 0;
+            requiredXpForLevelUp *= 2;
+            level++;
+            Debug.Log("LEVEL UP! Current level: " + level);
+        }
+    }
+
+    internal void ApplyItemStats(Item item)
+    {
+        MaxHealth += item.MaxHpFlatIncrease;
+        MaxHealth -= item.MaxHpFlatDecrease;
+
+        if (item.MaxHpPercentileIncrease != 0)
+        {
+            MaxHealth = (int) Math.Ceiling(MaxHealth * (1 + item.MaxHpPercentileIncrease));
+        }
+
+        if (item.MaxHpPercentileDecrease != 0)
+        {
+            MaxHealth = (int) Math.Ceiling(MaxHealth * (1 - item.MaxHpPercentileIncrease));
+        }
+
+        if (Health + item.HealthFlatIncrease >= MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        else
+        {
+            Health += item.HealthFlatIncrease;
+        }
+
+        AttackInterval += item.AttackIntervalIncrease;
+        AttackInterval -= item.AttackIntervalDecrease;
+
+        Damage += item.DamageIncrease;
+        Damage -= item.DamageDecrease;
+
+        if (item.MovementSpeedPercentileIncrease != 0)
+        {
+            MovementSpeed = (int)Math.Ceiling(MovementSpeed * (1 + item.MovementSpeedPercentileIncrease));
+        }
+
+        if (item.MovementSpeedPercentileDecrease != 0)
+        {
+            MovementSpeed = (int)Math.Ceiling(MovementSpeed * (1 - item.MovementSpeedPercentileDecrease));
+        }
+
+        HealthRegen += item.HealthRegenIncrease;
+        HealthRegen -= item.HealthRegenDecrease;
+
+        LifeSteal += item.LifeStealIncrease;
+        LifeSteal -= item.LifeStealDecrease;
+    }
+
+    internal void UpgradeWeapon()
+    {
+       Bow bow = weapon.GetComponent<Bow>();
+        switch (bow.weaponTier)
+        {
+            case WeaponTierEnum.ONE:
+                bow.weaponTier = WeaponTierEnum.TWO;
+                break;
+            case WeaponTierEnum.TWO:
+                bow.weaponTier = WeaponTierEnum.THREE;
+                break;
+            case WeaponTierEnum.THREE:
+                    bow.weaponTier = WeaponTierEnum.FOUR;
+                break;
+        }
     }
 
     private void SetAnimatorParameters()

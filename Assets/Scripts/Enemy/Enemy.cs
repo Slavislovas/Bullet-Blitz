@@ -5,9 +5,12 @@ using UnityEngine.AI;
 
 public class Enemy : BaseCharacter
 {
+    GameObject player;
+    Player playerScript;
     Transform target;
     NavMeshAgent agent;
     public Animator animator;
+    public int xpReward;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,9 @@ public class Enemy : BaseCharacter
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<Player>();
+        target = player.transform;
         InvokeRepeating("setDestination", 0f, 0.1f);
     }
 
@@ -46,6 +51,7 @@ public class Enemy : BaseCharacter
     {
         if (this.Health <= 0)
         {
+            playerScript.AddExperience(xpReward);
             Destroy(gameObject);
         }
     }
