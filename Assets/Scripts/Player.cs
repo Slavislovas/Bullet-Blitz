@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : BaseCharacter
@@ -14,7 +16,9 @@ public class Player : BaseCharacter
     bool invicible;
     public int experience = 0;
     int level = 1;
-    int requiredXpForLevelUp = 100;
+    int requiredXpForLevelUp = 10;
+    UnityEngine.Object[] availableItems;
+    LevelUpMenu levelUpMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,8 @@ public class Player : BaseCharacter
         var instantiatedWeapon = Instantiate(weapon);
         instantiatedWeapon.transform.SetParent(rb.transform, false);
         invicible = false;
+        availableItems = Resources.LoadAll("Items");
+        levelUpMenu = GameObject.FindGameObjectWithTag("LevelUpMenu").GetComponent<LevelUpMenu>();
     }
 
     // Update is called once per frame
@@ -58,12 +64,26 @@ public class Player : BaseCharacter
     internal void AddExperience(int xpReward)
     {
         this.experience += xpReward;
-        if (experience >= requiredXpForLevelUp)
+        if (experience >= requiredXpForLevelUp && availableItems.Length > 0)
         {
             experience = 0;
-            requiredXpForLevelUp *= 2;
+            requiredXpForLevelUp *= 1;
             level++;
-            Debug.Log("LEVEL UP! Current level: " + level);
+
+            if (availableItems.Length == 1)
+            {
+                levelUpMenu.PauseGame((GameObject)availableItems[0],
+                (GameObject)availableItems[0]);
+                return;
+            }
+
+            var itemOneIndex = UnityEngine.Random.Range(0, availableItems.Length);
+            var tempItemList = availableItems.Where(x => x != availableItems[itemOneIndex]).ToArray();
+            var itemTwoIndex = UnityEngine.Random.Range(0, tempItemList.Length);
+            levelUpMenu.PauseGame((GameObject) availableItems[itemOneIndex],
+                (GameObject) tempItemList[itemTwoIndex]);
+
+            Debug.Log("LEVEL UP! Current level: " + level + availableItems.Length);
         }
     }
 
@@ -112,6 +132,12 @@ public class Player : BaseCharacter
 
         LifeSteal += item.LifeStealIncrease;
         LifeSteal -= item.LifeStealDecrease;
+    }
+
+    public void RemoveItemFromList(GameObject item)
+    {
+        UnityEngine.Object itemObject = item;
+        availableItems = availableItems.Where(x => x != itemObject).ToArray();
     }
 
     internal void UpgradeWeapon()

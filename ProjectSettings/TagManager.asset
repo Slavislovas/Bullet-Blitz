@@ -13,6 +13,11 @@ TagManager:
   - GameOverMenuNewGameButton
   - BackButton
   - Item
+  - UpgradeOneImage
+  - UpgradeOneText
+  - UpgradeTwoImage
+  - UpgradeTwoText
+  - LevelUpMenu
   layers:
   - Default
   - TransparentFX
