@@ -18,6 +18,7 @@ TagManager:
   - UpgradeTwoImage
   - UpgradeTwoText
   - LevelUpMenu
+  - Timer
   layers:
   - Default
   - TransparentFX

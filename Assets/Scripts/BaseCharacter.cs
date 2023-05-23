@@ -9,6 +9,6 @@ public class BaseCharacter : MonoBehaviour
     public int Damage;
     public float AttackInterval; // 1 attack per AttackInterval seconds
     public float MovementSpeed;
-    public float HealthRegen;
+    public int HealthRegen;
     public float LifeSteal;
 }

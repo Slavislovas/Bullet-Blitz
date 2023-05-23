@@ -10,7 +10,6 @@ public class TierFourArrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(rb.velocity.x + "   " + rb.velocity.y);
         CalculateRotation();
     }
 

@@ -19,6 +19,8 @@ public class Player : BaseCharacter
     int requiredXpForLevelUp = 10;
     UnityEngine.Object[] availableItems;
     LevelUpMenu levelUpMenu;
+    bool healthRegenActivated;
+    bool recentlyHit;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class Player : BaseCharacter
         invicible = false;
         availableItems = Resources.LoadAll("Items");
         levelUpMenu = GameObject.FindGameObjectWithTag("LevelUpMenu").GetComponent<LevelUpMenu>();
+        healthRegenActivated = false;
     }
 
     // Update is called once per frame
@@ -36,6 +39,7 @@ public class Player : BaseCharacter
     {
         CalculateMovementDirection();
         SetAnimatorParameters();
+        HealthRegeneration();
     }
 
     private void FixedUpdate()
@@ -49,7 +53,9 @@ public class Player : BaseCharacter
         {
             int damage = collision.gameObject.GetComponent<Enemy>().Damage;
             this.Health -= damage;
+            recentlyHit = true;
             StartCoroutine(InvFrames());
+            StartCoroutine(ResetRecentlyHit());
         }
     }
 
@@ -59,6 +65,33 @@ public class Player : BaseCharacter
         yield return new WaitForSeconds(1);
         invicible = false;
 
+    }
+
+    private IEnumerator ResetRecentlyHit()
+    {
+        yield return new WaitForSeconds(3);
+        recentlyHit = false;
+    }
+
+    private void HealthRegeneration()
+    {
+        if (!recentlyHit && Health < MaxHealth)
+        {
+            StartCoroutine(AddHealth());
+        }
+    }
+
+    private IEnumerator AddHealth()
+    {
+        yield return new WaitForSeconds(1);
+        if (Health + HealthRegen > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        else
+        {
+            Health += HealthRegen;
+        }
     }
 
     internal void AddExperience(int xpReward)
@@ -83,7 +116,6 @@ public class Player : BaseCharacter
             levelUpMenu.PauseGame((GameObject) availableItems[itemOneIndex],
                 (GameObject) tempItemList[itemTwoIndex]);
 
-            Debug.Log("LEVEL UP! Current level: " + level + availableItems.Length);
         }
     }
 

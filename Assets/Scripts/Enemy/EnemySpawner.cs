@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,22 @@ using UnityEngine.Tilemaps;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject miniBossPrefab;
     public float spawnInterval = 5f;
     public float spawnDistanceFromCamera = 10f;
     public Tilemap collidableTilemap;
     public int mapHeight;
     public int mapWidth;
+    Timer timer;
+    Enemy enemyScript;
 
     private float timeSinceLastSpawn = 0f;
+
+    void Start()
+    {
+        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
+        enemyScript = enemyPrefab.GetComponent<Enemy>();
+    }
 
     private void Update()
     {
@@ -49,6 +59,18 @@ public class EnemySpawner : MonoBehaviour
         if (IsInsideMapBounds(spawnPos))
         {
             spawnPos.z = 0;
+
+            if (timer.minutes % 5 == 0 && timer.newMinute)
+            {
+                Instantiate(miniBossPrefab, spawnPos, Quaternion.identity);
+                timer.newMinute = false;
+                spawnInterval *= 0.75f;
+                enemyScript.Damage = (int) Math.Ceiling(enemyScript.Damage * 1.20);
+                enemyScript.MaxHealth = (int)Math.Ceiling(enemyScript.MaxHealth * 1.20);
+                enemyScript.Health = (int)Math.Ceiling(enemyScript.Health * 1.20);
+                return;
+            }
+
             Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         }
     }
@@ -80,8 +102,8 @@ public class EnemySpawner : MonoBehaviour
 
         // Calculate a random position on the edge of the camera view that is at least spawnDistanceFromCamera units away from the camera
         Vector3 randomEdgePos = new Vector3(
-            cameraPos.x + Random.Range(-cameraWidth / 2f, cameraWidth / 2f),
-            cameraPos.y + Random.Range(-cameraHeight / 2f, cameraHeight / 2f),
+            cameraPos.x + UnityEngine.Random.Range(-cameraWidth / 2f, cameraWidth / 2f),
+            cameraPos.y + UnityEngine.Random.Range(-cameraHeight / 2f, cameraHeight / 2f),
             0f);
 
         Vector3 towardsCamera = (cameraPos - randomEdgePos).normalized;

@@ -24,8 +24,8 @@ public class Item : MonoBehaviour
     public float MovementSpeedPercentileIncrease;
     public float MovementSpeedPercentileDecrease;
 
-    public float HealthRegenIncrease;
-    public float HealthRegenDecrease;
+    public int HealthRegenIncrease;
+    public int HealthRegenDecrease;
 
     public float LifeStealIncrease;
     public float LifeStealDecrease;
