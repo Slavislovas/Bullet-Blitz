@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         minutes = 4;
-        seconds = 30;
+        seconds = 50;
         newMinute = false;
         StartCoroutine(StartTimer());
     }

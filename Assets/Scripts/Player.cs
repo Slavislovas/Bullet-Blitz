@@ -10,7 +10,7 @@ public class Player : BaseCharacter
     float horizontal;
     float vertical;
     [SerializeField]
-    GameObject weapon;
+    public GameObject weapon;
     [SerializeField]
     Animator animator;
     bool invicible;
@@ -19,18 +19,21 @@ public class Player : BaseCharacter
     int requiredXpForLevelUp = 10;
     UnityEngine.Object[] availableItems;
     LevelUpMenu levelUpMenu;
+    WeaponUpgradeMenu weaponUpgradeMenu;
     bool healthRegenActivated;
     bool recentlyHit;
+    public GameObject instantiatedWeapon;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        var instantiatedWeapon = Instantiate(weapon);
+        instantiatedWeapon = Instantiate(weapon);
         instantiatedWeapon.transform.SetParent(rb.transform, false);
         invicible = false;
         availableItems = Resources.LoadAll("Items");
         levelUpMenu = GameObject.FindGameObjectWithTag("LevelUpMenu").GetComponent<LevelUpMenu>();
+        weaponUpgradeMenu = GameObject.FindGameObjectWithTag("WeaponUpgradeMenu").GetComponent<WeaponUpgradeMenu>();
         healthRegenActivated = false;
     }
 
@@ -56,6 +59,12 @@ public class Player : BaseCharacter
             recentlyHit = true;
             StartCoroutine(InvFrames());
             StartCoroutine(ResetRecentlyHit());
+        }
+
+        if (collision.gameObject.tag.Equals("WeaponUpgrade"))
+        {
+            weaponUpgradeMenu.PauseGame();
+            Destroy(collision.gameObject);
         }
     }
 
@@ -170,23 +179,6 @@ public class Player : BaseCharacter
     {
         UnityEngine.Object itemObject = item;
         availableItems = availableItems.Where(x => x != itemObject).ToArray();
-    }
-
-    internal void UpgradeWeapon()
-    {
-       Bow bow = weapon.GetComponent<Bow>();
-        switch (bow.weaponTier)
-        {
-            case WeaponTierEnum.ONE:
-                bow.weaponTier = WeaponTierEnum.TWO;
-                break;
-            case WeaponTierEnum.TWO:
-                bow.weaponTier = WeaponTierEnum.THREE;
-                break;
-            case WeaponTierEnum.THREE:
-                    bow.weaponTier = WeaponTierEnum.FOUR;
-                break;
-        }
     }
 
     private void SetAnimatorParameters()

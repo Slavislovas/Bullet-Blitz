@@ -19,6 +19,9 @@ TagManager:
   - UpgradeTwoText
   - LevelUpMenu
   - Timer
+  - WeaponUpgrade
+  - WeaponUpgradeMenu
+  - ArrowImage
   layers:
   - Default
   - TransparentFX
