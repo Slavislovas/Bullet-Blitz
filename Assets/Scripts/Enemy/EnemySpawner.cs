@@ -68,6 +68,7 @@ public class EnemySpawner : MonoBehaviour
                 enemyScript.Damage = (int) Math.Ceiling(enemyScript.Damage * 1.20);
                 enemyScript.MaxHealth = (int)Math.Ceiling(enemyScript.MaxHealth * 1.20);
                 enemyScript.Health = (int)Math.Ceiling(enemyScript.Health * 1.20);
+                enemyScript.MovementSpeed = (float)(enemyScript.MovementSpeed * 1.20);
                 return;
             }
 

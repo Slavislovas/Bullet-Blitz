@@ -96,10 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc77cc2e33234c74c8fbfc7a8de63da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 0
   Health: 100
   Damage: 5
   AttackInterval: 0
-  MovementSpeed: 5
+  MovementSpeed: 3
   HealthRegen: 0
   LifeSteal: 0
   animator: {fileID: -783560353478636640}

@@ -16,12 +16,12 @@ public class Player : BaseCharacter
     bool invicible;
     public int experience = 0;
     int level = 1;
-    int requiredXpForLevelUp = 10;
+    int requiredXpForLevelUp = 1;
     UnityEngine.Object[] availableItems;
     LevelUpMenu levelUpMenu;
     WeaponUpgradeMenu weaponUpgradeMenu;
     bool healthRegenActivated;
-    bool recentlyHit;
+    public bool recentlyHit;
     public GameObject instantiatedWeapon;
 
     // Start is called before the first frame update
@@ -35,6 +35,7 @@ public class Player : BaseCharacter
         levelUpMenu = GameObject.FindGameObjectWithTag("LevelUpMenu").GetComponent<LevelUpMenu>();
         weaponUpgradeMenu = GameObject.FindGameObjectWithTag("WeaponUpgradeMenu").GetComponent<WeaponUpgradeMenu>();
         healthRegenActivated = false;
+        StartCoroutine(RegenerateHealth());
     }
 
     // Update is called once per frame
@@ -42,7 +43,6 @@ public class Player : BaseCharacter
     {
         CalculateMovementDirection();
         SetAnimatorParameters();
-        HealthRegeneration();
     }
 
     private void FixedUpdate()
@@ -78,7 +78,7 @@ public class Player : BaseCharacter
 
     private IEnumerator ResetRecentlyHit()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         recentlyHit = false;
     }
 
@@ -100,6 +100,23 @@ public class Player : BaseCharacter
         else
         {
             Health += HealthRegen;
+        }
+    }
+
+    private IEnumerator RegenerateHealth()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => !recentlyHit);
+            if (Health + HealthRegen > MaxHealth)
+            {
+                Health = MaxHealth;
+            }
+            else
+            {
+                Health += HealthRegen;
+            }
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -143,7 +160,7 @@ public class Player : BaseCharacter
             MaxHealth = (int) Math.Ceiling(MaxHealth * (1 - item.MaxHpPercentileIncrease));
         }
 
-        if (Health + item.HealthFlatIncrease >= MaxHealth)
+        if (Health + item.HealthFlatIncrease > MaxHealth)
         {
             Health = MaxHealth;
         }
@@ -152,20 +169,27 @@ public class Player : BaseCharacter
             Health += item.HealthFlatIncrease;
         }
 
-        AttackInterval += item.AttackIntervalIncrease;
-        AttackInterval -= item.AttackIntervalDecrease;
+        if (item.AttackIntervalIncrease != 0)
+        {
+            AttackInterval = AttackInterval * (1 + item.AttackIntervalIncrease);
+        }
+
+        if (item.AttackIntervalDecrease != 0)
+        {
+            AttackInterval = AttackInterval * (1 - item.AttackIntervalDecrease);
+        }
 
         Damage += item.DamageIncrease;
         Damage -= item.DamageDecrease;
 
         if (item.MovementSpeedPercentileIncrease != 0)
         {
-            MovementSpeed = (int)Math.Ceiling(MovementSpeed * (1 + item.MovementSpeedPercentileIncrease));
+            MovementSpeed = MovementSpeed * (1 + item.MovementSpeedPercentileIncrease);
         }
 
         if (item.MovementSpeedPercentileDecrease != 0)
         {
-            MovementSpeed = (int)Math.Ceiling(MovementSpeed * (1 - item.MovementSpeedPercentileDecrease));
+            MovementSpeed = MovementSpeed * (1 - item.MovementSpeedPercentileDecrease);
         }
 
         HealthRegen += item.HealthRegenIncrease;

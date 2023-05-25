@@ -123,14 +123,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 20
   Health: 20
-  Damage: 50
-  AttackInterval: 1
+  Damage: 300
+  AttackInterval: 2
   MovementSpeed: 5
   HealthRegen: 0
   LifeSteal: 0
   weapon: {fileID: 3451939946014603121, guid: 5d305b35354796b4c9ee6b5c6e090384, type: 3}
   animator: {fileID: -3881381920783435323}
   experience: 0
+  recentlyHit: 0
+  instantiatedWeapon: {fileID: 0}
 --- !u!61 &9181303899105475587
 BoxCollider2D:
   m_ObjectHideFlags: 0

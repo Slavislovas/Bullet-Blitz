@@ -13,6 +13,8 @@ public class LevelUpMenu : MonoBehaviour
     public GameObject UpgradeTwoImage;
     public GameObject UpgradeTwoText;
     private Player player;
+    private GameObject itemOne;
+    private GameObject itemTwo;
 
     private void Start()
     {
@@ -32,9 +34,8 @@ public class LevelUpMenu : MonoBehaviour
         UpgradeTwoImage.GetComponent<Image>().sprite = itemTwo.GetComponent<SpriteRenderer>().sprite;
         UpgradeOneText.GetComponent<TMPro.TextMeshProUGUI>().text = itemOne.GetComponent<Item>().description;
         UpgradeTwoText.GetComponent<TMPro.TextMeshProUGUI>().text = itemTwo.GetComponent<Item>().description;
-
-        UpgradeOneImage.GetComponent<Button>().onClick.AddListener(delegate () { SelectItem(itemOne); });
-        UpgradeTwoImage.GetComponent<Button>().onClick.AddListener(delegate () { SelectItem(itemTwo); });
+        this.itemOne = itemOne;
+        this.itemTwo = itemTwo;
 
         LevelUpUI.SetActive(true);
         Time.timeScale = 0f;
@@ -42,10 +43,17 @@ public class LevelUpMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(UpgradeOneImage);
     }
 
-    void SelectItem(GameObject item)
+    public void SelectItemOne()
     {
-        player.ApplyItemStats(item.GetComponent<Item>());
-        player.RemoveItemFromList(item);
+        player.ApplyItemStats(itemOne.GetComponent<Item>());
+        player.RemoveItemFromList(itemOne);
+        ResumeGame();
+    }
+
+    public void SelectItemTwo()
+    {
+        player.ApplyItemStats(itemTwo.GetComponent<Item>());
+        player.RemoveItemFromList(itemTwo);
         ResumeGame();
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -1240438977866169793}
   - component: {fileID: -5634478279827431557}
   m_Layer: 0
-  m_Name: Crown
+  m_Name: Wine bottle
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,15 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d683a2191a1bbf24dbc0c36c8d27942f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: You feel the power of the crown, granting you +10 damage. However,
-    you get too comfortable on your throne, losing 10% movement speed.
+  description: You find a wine bottle. Upon drinking it you become drunk and aggresive,
+    granting you +10 damage. However, you get sluggish, therefore you lose 10% attack
+    speed and 10% movement speed.
   MaxHpFlatIncrease: 0
   MaxHpFlatDecrease: 0
   HealthFlatIncrease: 0
   HealthFlatDecrease: 0
   MaxHpPercentileIncrease: 0
   MaxHpPercentileDecrease: 0
-  AttackIntervalIncrease: 0
+  AttackIntervalIncrease: 0.1
   AttackIntervalDecrease: 0
   DamageIncrease: 10
   DamageDecrease: 0
@@ -104,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1fb55912c64326f409ca611f94612984, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 390dd3751cb70cc4e8cf97f08cffdd19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

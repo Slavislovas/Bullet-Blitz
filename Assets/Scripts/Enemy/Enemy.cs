@@ -16,6 +16,7 @@ public class Enemy : BaseCharacter
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = MovementSpeed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         player = GameObject.FindGameObjectWithTag("Player");
