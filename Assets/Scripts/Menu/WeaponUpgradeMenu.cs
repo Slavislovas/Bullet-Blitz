@@ -13,13 +13,7 @@ public class WeaponUpgradeMenu : MonoBehaviour
     public GameObject ArrowImage;
     public GameObject UpgradeText;
     public static bool GameIsPaused = false;
-    Player player;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
+    public Player player;
 
     public void ResumeGame()
     {

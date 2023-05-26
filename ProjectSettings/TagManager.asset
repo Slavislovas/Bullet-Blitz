@@ -22,11 +22,14 @@ TagManager:
   - WeaponUpgrade
   - WeaponUpgradeMenu
   - ArrowImage
+  - DataHandler
+  - NormalModeComplete
+  - GameOverMenuCanvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - OnGround
   - Water
   - UI
   - Obstacles

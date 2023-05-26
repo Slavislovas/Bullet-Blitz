@@ -20,7 +20,7 @@ public class Player : BaseCharacter
     UnityEngine.Object[] availableItems;
     LevelUpMenu levelUpMenu;
     WeaponUpgradeMenu weaponUpgradeMenu;
-    bool healthRegenActivated;
+    GameOverMenu gameOverMenu;
     public bool recentlyHit;
     public GameObject instantiatedWeapon;
 
@@ -33,8 +33,9 @@ public class Player : BaseCharacter
         invicible = false;
         availableItems = Resources.LoadAll("Items");
         levelUpMenu = GameObject.FindGameObjectWithTag("LevelUpMenu").GetComponent<LevelUpMenu>();
+        gameOverMenu = GameObject.FindGameObjectWithTag("GameOverMenuCanvas").GetComponent<GameOverMenu>();
         weaponUpgradeMenu = GameObject.FindGameObjectWithTag("WeaponUpgradeMenu").GetComponent<WeaponUpgradeMenu>();
-        healthRegenActivated = false;
+        weaponUpgradeMenu.player = this;
         StartCoroutine(RegenerateHealth());
     }
 
@@ -56,6 +57,10 @@ public class Player : BaseCharacter
         {
             int damage = collision.gameObject.GetComponent<Enemy>().Damage;
             this.Health -= damage;
+            if (this.Health <= 0)
+            {
+                gameOverMenu.PauseGame();
+            }
             recentlyHit = true;
             StartCoroutine(InvFrames());
             StartCoroutine(ResetRecentlyHit());
@@ -80,27 +85,6 @@ public class Player : BaseCharacter
     {
         yield return new WaitForSeconds(5);
         recentlyHit = false;
-    }
-
-    private void HealthRegeneration()
-    {
-        if (!recentlyHit && Health < MaxHealth)
-        {
-            StartCoroutine(AddHealth());
-        }
-    }
-
-    private IEnumerator AddHealth()
-    {
-        yield return new WaitForSeconds(1);
-        if (Health + HealthRegen > MaxHealth)
-        {
-            Health = MaxHealth;
-        }
-        else
-        {
-            Health += HealthRegen;
-        }
     }
 
     private IEnumerator RegenerateHealth()

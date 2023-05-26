@@ -22,7 +22,7 @@ public class MiniBoss : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!player.instantiatedWeapon.GetComponent<Bow>().weaponTier.Equals(WeaponTierEnum.FOUR))
+        if (player.gameObject != null && !player.instantiatedWeapon.GetComponent<Bow>().weaponTier.Equals(WeaponTierEnum.FOUR))
         {
             Instantiate(weaponUpgradeChest, transform.position, Quaternion.identity);
         }

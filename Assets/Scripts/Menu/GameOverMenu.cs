@@ -9,19 +9,6 @@ public class GameOverMenu : MonoBehaviour
     public GameObject NewGameButton;
     Player Player;
 
-
-    void Start()
-    {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        Time.timeScale = 1f;
-        GameIsOver = false;
-    }
-
-    void Update()
-    {
-        IsDead();
-    }
-
     public void LoadNewGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -38,14 +25,10 @@ public class GameOverMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void IsDead()
+    public void PauseGame()
     {
-        if (!GameIsOver && Player.Health <= 0)
-        {
-            GameIsOver = true;
-            Time.timeScale = 0f;
-            GameOverMenuUI.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(NewGameButton);
-        }
+        Time.timeScale = 0f;
+        GameOverMenuUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(NewGameButton);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -3423620468861142549}
   - component: {fileID: -9046990069055547407}
   - component: {fileID: 4996704797231491947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponUpgradeChest
   m_TagString: WeaponUpgrade
   m_Icon: {fileID: 0}

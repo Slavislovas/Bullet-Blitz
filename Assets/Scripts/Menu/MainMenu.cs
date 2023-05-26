@@ -3,21 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
+    public GameObject LevelSelect;
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
-
-    public void NewGame ()
+    private void Start()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
+    }
+    public void RedirectToSelectLevel()
+    {
+        gameObject.SetActive(false);
+        LevelSelect.SetActive(true);
     }
 
     public void QuitGame ()

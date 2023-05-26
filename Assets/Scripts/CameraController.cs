@@ -37,7 +37,7 @@ public class CameraController : MonoBehaviour
         cameraOffset = transform.position - playerTransform.position;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         Vector3 playerPosition = playerTransform.transform.position;
         playerPosition.z = transform.position.z;
