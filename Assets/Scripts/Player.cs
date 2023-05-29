@@ -16,13 +16,15 @@ public class Player : BaseCharacter
     bool invicible;
     public int experience = 0;
     int level = 1;
-    int requiredXpForLevelUp = 1;
+    int requiredXpForLevelUp = 20;
     UnityEngine.Object[] availableItems;
     LevelUpMenu levelUpMenu;
     WeaponUpgradeMenu weaponUpgradeMenu;
     GameOverMenu gameOverMenu;
     public bool recentlyHit;
     public GameObject instantiatedWeapon;
+    private GameObject UICanvas;
+    private UI uiMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,11 @@ public class Player : BaseCharacter
         gameOverMenu = GameObject.FindGameObjectWithTag("GameOverMenuCanvas").GetComponent<GameOverMenu>();
         weaponUpgradeMenu = GameObject.FindGameObjectWithTag("WeaponUpgradeMenu").GetComponent<WeaponUpgradeMenu>();
         weaponUpgradeMenu.player = this;
+        UICanvas = GameObject.FindGameObjectWithTag("UICanvas");
+        uiMenu = UICanvas.GetComponent<UI>();
+        uiMenu.SetMaxHealth(MaxHealth);
+        uiMenu.SetMaxXP(requiredXpForLevelUp);
+        uiMenu.SetLevel(level);
         StartCoroutine(RegenerateHealth());
     }
 
@@ -56,8 +63,9 @@ public class Player : BaseCharacter
         if (collision.gameObject.tag.Equals("Enemy") && !invicible)
         {
             int damage = collision.gameObject.GetComponent<Enemy>().Damage;
-            this.Health -= damage;
-            if (this.Health <= 0)
+            Health -= damage;
+            uiMenu.SetHealth(Health);
+            if (Health <= 0)
             {
                 gameOverMenu.PauseGame();
             }
@@ -100,18 +108,24 @@ public class Player : BaseCharacter
             {
                 Health += HealthRegen;
             }
+            uiMenu.SetHealth(Health);
             yield return new WaitForSeconds(1);
         }
     }
 
     internal void AddExperience(int xpReward)
     {
-        this.experience += xpReward;
+        experience += xpReward;
+        uiMenu.SetXP(experience);
         if (experience >= requiredXpForLevelUp && availableItems.Length > 0)
         {
             experience = 0;
             requiredXpForLevelUp *= 1;
             level++;
+
+            uiMenu.SetMaxXP(requiredXpForLevelUp);
+            uiMenu.SetXP(experience);
+            uiMenu.SetLevel(level);
 
             if (availableItems.Length == 1)
             {
@@ -181,6 +195,9 @@ public class Player : BaseCharacter
 
         LifeSteal += item.LifeStealIncrease;
         LifeSteal -= item.LifeStealDecrease;
+
+        uiMenu.SetMaxHealth(MaxHealth);
+        uiMenu.SetHealth(Health);
     }
 
     public void RemoveItemFromList(GameObject item)

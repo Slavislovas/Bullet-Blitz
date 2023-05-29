@@ -11,6 +11,8 @@ public class Timer : MonoBehaviour
     public DataHandlerScriptableObject DataHandler;
     public GameObject normalModeCompleteCanvas;
     private NormalModeCompleteMenu normalModeCompleteMenu;
+    public GameObject UICanvas;
+    private UI UIMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class Timer : MonoBehaviour
         seconds = 50;
         newMinute = false;
         normalModeCompleteMenu = normalModeCompleteCanvas.GetComponent<NormalModeCompleteMenu>();
+        UIMenu = UICanvas.GetComponent<UI>();
         StartCoroutine(StartTimer());
     }
 
@@ -42,6 +45,8 @@ public class Timer : MonoBehaviour
             }
 
             Debug.Log("Minutes: " + minutes + " Seconds: " + seconds);
+
+            UIMenu.SetTime(minutes, seconds);
 
         }
     }

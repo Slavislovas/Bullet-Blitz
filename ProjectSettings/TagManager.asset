@@ -25,6 +25,9 @@ TagManager:
   - DataHandler
   - NormalModeComplete
   - GameOverMenuCanvas
+  - UICanvas
+  - HealthBar
+  - XPBar
   layers:
   - Default
   - TransparentFX
