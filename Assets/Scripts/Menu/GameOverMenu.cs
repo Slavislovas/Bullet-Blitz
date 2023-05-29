@@ -11,6 +11,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void LoadNewGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

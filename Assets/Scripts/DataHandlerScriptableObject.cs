@@ -40,6 +40,9 @@ public class DataHandlerScriptableObject : ScriptableObject
             case "Forest":
                 SavedData.isCompletedForestNormalMode = true;
                 break;
+            case "Dungeon":
+                SavedData.isCompletedDungeonNormalMode = true;
+                break;
         }
         string fullPath = Path.Combine(DataDirPath, DataFileName);
         string newSaveData = SavedData.ToJson();
